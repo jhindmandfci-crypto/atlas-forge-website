@@ -109,14 +109,15 @@
     .make-work strong{color:var(--red-dark)}
     .new-ideas{background:var(--surface);padding:clamp(28px,5vw,56px);border:1px solid var(--line);box-shadow:var(--shadow)}
     .ideas-list{margin-top:32px;border-top:1px solid var(--line)}
-    .idea{display:grid;grid-template-columns:52px minmax(180px,.9fr) minmax(260px,1.4fr) auto;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+    .idea{display:grid;grid-template-columns:52px minmax(180px,.9fr) minmax(0,1.4fr);gap:10px 20px;align-items:start;padding:22px 0;border-bottom:1px solid var(--line)}
     .number{font-family:"Lora",serif;font-size:1.3rem;color:var(--red-dark)}
-    .idea h3{font-size:1.16rem}
+    .idea h3{grid-column:2;font-size:1.16rem}
+    .idea>p,.idea>.idea-copy{grid-column:3;min-width:0;width:100%;overflow-wrap:break-word}
     .idea-copy{min-width:0}
     .idea p{margin:0;color:var(--muted);font-size:.96rem}
     .idea-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
     .idea-tags .tag{font-size:.69rem}
-    .why{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--olive)}
+    .why{grid-column:3;display:block;justify-self:start;font-size:.78rem;line-height:1.25;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--olive)}
     .why a{text-decoration-thickness:1px;text-underline-offset:3px}
     .meal-card[id]{scroll-margin-top:20px}
     .week-panel{display:grid;grid-template-columns:.75fr 1.25fr;gap:40px;align-items:start;background:var(--olive-soft);padding:clamp(28px,5vw,52px);border-radius:52px 10px 52px 10px}
@@ -140,7 +141,9 @@
       .photo-stack{min-height:400px}
       .safety-grid{grid-template-columns:1fr 1fr}
       .meal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .idea{grid-template-columns:38px 1fr}.idea-copy,.why{grid-column:2}
+      .idea{grid-template-columns:38px minmax(0,1fr)}
+      .idea>h3{grid-column:2}
+      .idea>p,.idea>.idea-copy,.idea>.why{grid-column:1/-1}
       .week-panel{grid-template-columns:1fr}
       .pantry{grid-template-columns:repeat(2,1fr)}
     }
@@ -157,7 +160,9 @@
       .meal-grid{grid-template-columns:1fr}
       .meal-card{min-height:0}
       .new-ideas{padding:24px 18px}
-      .idea{grid-template-columns:30px 1fr;gap:10px 12px}.idea-copy,.why{grid-column:2}
+      .idea{grid-template-columns:30px minmax(0,1fr);gap:10px 12px}
+      .idea>h3{grid-column:2}
+      .idea>p,.idea>.idea-copy,.idea>.why{grid-column:1/-1}
       .week-panel{padding:25px 18px;border-radius:30px 8px 30px 8px}
       .week-night{grid-template-columns:92px 1fr;padding:12px}
       .pantry{grid-template-columns:1fr 1fr}
