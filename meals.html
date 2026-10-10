@@ -69,6 +69,7 @@
     .button{border:0;cursor:pointer;padding:10px 16px;border-radius:999px;font-weight:800;transition:transform .16s ease,background .16s ease}
     .button:active{transform:translateY(1px)}
     .button.primary{background:var(--red);color:#fff}
+    .button.primary:disabled{opacity:.48;cursor:not-allowed}
     .button.secondary{background:var(--olive-soft);color:var(--ink)}
     .button:focus-visible,.filter:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
     .photo-stack{position:relative;min-height:500px}
@@ -136,6 +137,44 @@
     footer summary{cursor:pointer;font-weight:700}
     footer ul{padding-left:18px}
     .empty{padding:34px;border:1px dashed var(--line);color:var(--muted);display:none;text-align:center}
+    .step-kicker{display:block;font-family:"Alegreya Sans",sans-serif;font-size:.84rem;line-height:1.2;letter-spacing:.06em;text-transform:uppercase;color:var(--red-dark);margin-bottom:8px}
+    .subsection-title{font-size:1.35rem;margin:26px 0 12px}
+    .pick-button{min-height:48px;border:2px solid var(--red);background:transparent;color:var(--red-dark);padding:10px 16px;border-radius:10px;font-weight:800;cursor:pointer;margin-top:18px;width:100%;transition:background .16s ease,color .16s ease}
+    .pick-button:hover{background:var(--red-soft)}
+    .pick-button[aria-pressed="true"]{background:var(--red);color:#fff}
+    .pick-button:focus-visible,.tray-chip:focus-visible,.pantry-check input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+    .idea .pick-button{grid-column:3;justify-self:start;width:auto;min-width:180px;margin-top:2px}
+    .week-tray{position:sticky;top:10px;z-index:5;background:var(--ink);color:var(--paper);padding:18px 20px;margin:0 0 28px;box-shadow:var(--shadow)}
+    .tray-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .tray-title{font-family:"Lora",serif;font-size:1.12rem;font-weight:700}
+    .tray-count{color:var(--gold);font-weight:800;margin-left:7px;font-family:"Alegreya Sans",sans-serif;font-size:.92rem}
+    .tray-empty{margin:10px 0 0;color:var(--paper);opacity:.76}
+    .tray-picks{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .tray-chip{border:1px solid color-mix(in srgb,var(--paper) 38%,transparent);background:transparent;color:var(--paper);min-height:44px;padding:8px 12px;border-radius:8px;cursor:pointer;text-align:left;font-weight:700}
+    .tray-chip::after{content:" ×";color:var(--gold);font-weight:800}
+    .tray-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+    .tray-actions .button{min-height:48px}
+    .week-tray .button.secondary{background:var(--surface);color:var(--ink)}
+    .week-tray .button.ghost{background:transparent;color:var(--paper);border:1px solid color-mix(in srgb,var(--paper) 45%,transparent)}
+    .planning-step{scroll-margin-top:20px;background:var(--surface);border:1px solid var(--line);padding:clamp(24px,5vw,48px)}
+    .planning-step[hidden]{display:none}
+    .planning-step h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.035em}
+    .planning-intro{color:var(--muted);max-width:680px;margin:12px 0 26px}
+    .pantry-groups{display:grid;gap:22px}
+    .pantry-meal{border-top:3px solid var(--olive);padding-top:15px}
+    .pantry-meal h3{font-size:1.18rem;margin-bottom:10px}
+    .pantry-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}
+    .pantry-check{display:flex;gap:11px;align-items:flex-start;min-height:48px;padding:9px 10px;background:var(--paper);cursor:pointer}
+    .pantry-check input{width:22px;height:22px;flex:0 0 auto;margin:1px 0 0;accent-color:var(--olive)}
+    .pantry-check span{min-width:0;overflow-wrap:break-word}
+    .shopping-box{margin-top:32px;background:var(--olive-soft);padding:24px}
+    .shopping-box h3{font-size:1.45rem;margin-bottom:6px}
+    .shopping-note{color:var(--muted);margin:0 0 18px}
+    .shopping-list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}
+    .shopping-list li{position:relative;padding:8px 8px 8px 27px;border-bottom:1px solid var(--line);overflow-wrap:break-word}
+    .shopping-list li::before{content:"";position:absolute;left:2px;top:15px;width:10px;height:10px;border:2px solid var(--red)}
+    .shopping-empty{color:var(--muted);font-style:italic}
+    .copy-status{min-height:1.35em;margin:10px 0 0;font-weight:700;color:var(--olive)}
     @media (max-width:900px){
       .hero-grid{grid-template-columns:1fr;gap:34px}
       .photo-stack{min-height:400px}
@@ -143,7 +182,8 @@
       .meal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .idea{grid-template-columns:38px minmax(0,1fr)}
       .idea>h3{grid-column:2}
-      .idea>p,.idea>.idea-copy,.idea>.why{grid-column:1/-1}
+      .idea>p,.idea>.idea-copy,.idea>.why,.idea .pick-button{grid-column:1/-1}
+      .idea .pick-button{width:100%}
       .week-panel{grid-template-columns:1fr}
       .pantry{grid-template-columns:repeat(2,1fr)}
     }
@@ -166,6 +206,13 @@
       .week-panel{padding:25px 18px;border-radius:30px 8px 30px 8px}
       .week-night{grid-template-columns:92px 1fr;padding:12px}
       .pantry{grid-template-columns:1fr 1fr}
+      .week-tray{top:6px;padding:15px 14px;margin-left:-4px;margin-right:-4px}
+      .tray-top{align-items:flex-start}
+      .tray-actions{display:grid;grid-template-columns:1fr 1fr}
+      .tray-actions .button{width:100%;padding-left:10px;padding-right:10px}
+      .pantry-checks,.shopping-list{grid-template-columns:1fr}
+      .planning-step{padding:24px 16px}
+      .shopping-box{padding:20px 14px}
     }
     @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
   </style>
@@ -213,9 +260,10 @@
   <main class="wrap">
     <section id="rotation">
       <div class="section-head">
-        <h2>Confirmed favorites</h2>
-        <p>All ten staples in the regular rotation. Filter by the kind of night you’re having.</p>
+        <h2><span class="step-kicker">1. Pick dinners</span>Choose this week’s meals</h2>
+        <p>Pick up to five dinners from the ten confirmed favorites and twenty-six ideas below.</p>
       </div>
+      <h3 class="subsection-title">Confirmed favorites</h3>
       <div class="filters" role="group" aria-label="Filter family meals">
         <button class="filter active" data-filter="all" type="button">All meals</button>
         <button class="filter" data-filter="quick" type="button">30 minutes</button>
@@ -224,6 +272,17 @@
         <button class="filter" data-filter="slow" type="button">Slow cooker</button>
         <button class="filter" data-filter="easy" type="button">Lowest effort</button>
       </div>
+      <aside class="week-tray" id="weekTray" aria-live="polite">
+        <div class="tray-top">
+          <div class="tray-title">This week’s dinners <span class="tray-count" id="trayCount">0 of 5 picked</span></div>
+        </div>
+        <p class="tray-empty" id="trayEmpty">Pick a meal below and it’ll show up here.</p>
+        <div class="tray-picks" id="trayPicks"></div>
+        <div class="tray-actions">
+          <button class="button primary" id="getShoppingList" type="button" disabled>Get shopping list</button>
+          <button class="button ghost" id="startOver" type="button">Start over</button>
+        </div>
+      </aside>
       <div class="meal-grid" id="mealGrid">
         <article class="meal-card" data-tags="chicken">
           <div class="meta"><span class="tag">Chicken</span><span class="tag">Keep on hand</span></div>
@@ -410,7 +469,7 @@
           <span class="number">21</span>
           <h3>Chicken fried rice</h3>
           <div class="idea-copy">
-            <p>Diced chicken, rice, peas, carrots and scrambled egg make one shared skillet and a great leftover vehicle. Finish Justin’s bowl with GF tamari instead of regular soy sauce, which contains wheat.</p>
+            <p>Diced chicken, rice, peas, carrots and scrambled egg make one shared skillet and a great leftover vehicle. Finish the whole pan with GF tamari so everyone shares the same dinner.</p>
             <div class="idea-tags" aria-label="Meal rules"><span class="tag">GF for Justin</span><span class="tag">No pork</span><span class="tag">Tree-nut-safe plan</span><span class="tag">One shared dinner</span></div>
           </div>
           <span class="why">Similar to salsa chicken</span>
@@ -460,6 +519,22 @@
           </div>
           <span class="why">Similar to frozen pizza / <a href="#meal-tacos">tacos</a></span>
         </article>
+      </div>
+    </section>
+
+    <section id="pantry-check" class="planning-step" hidden>
+      <h2><span class="step-kicker">2. Check your pantry</span>Already have it?</h2>
+      <p class="planning-intro">Check anything already in the kitchen. Leave it unchecked if it needs to go on the shopping list.</p>
+      <div class="pantry-groups" id="pantryGroups"></div>
+      <div class="shopping-box" id="shopping-list">
+        <h3><span class="step-kicker">3. Your shopping list</span>What you still need</h3>
+        <p class="shopping-note">Duplicates are combined automatically. Quantities are practical estimates for one family dinner.</p>
+        <ul class="shopping-list" id="shoppingList" aria-live="polite"></ul>
+        <div class="button-row" style="margin-top:20px">
+          <button class="button primary" id="copyList" type="button">Copy list</button>
+          <button class="button secondary" id="startOverBottom" type="button">Start over</button>
+        </div>
+        <p class="copy-status" id="copyStatus" aria-live="polite"></p>
       </div>
     </section>
 
@@ -596,6 +671,222 @@
       }
       document.getElementById("buildWeek").addEventListener("click",buildWeek);
       buildWeek();
+    })();
+  </script>
+  <script>
+    (function(){
+      function item(name,quantity){return {name:name,quantity:quantity};}
+      var meals={
+        "Salsa chicken":[item("Chicken breasts","2 lb"),item("Mateo’s salsa","1 jar"),item("Rice","2 cups dry"),item("Black beans","1 can"),item("Shredded cheese","2 cups"),item("Broccoli","1 large bag")],
+        "Tacos":[item("Ground beef","2 lb"),item("GF taco seasoning","2 packets"),item("Corn tortillas","18"),item("Lettuce","1 head"),item("Tomatoes","3"),item("Shredded cheese","2 cups"),item("Green beans","1 bag")],
+        "Chili":[item("Ground beef","2 lb"),item("Kidney beans","2 cans"),item("Black beans","1 can"),item("Diced tomatoes","2 cans"),item("GF chili seasoning","1 packet"),item("Sweet potatoes","2 large"),item("Shredded cheese","1 cup"),item("Green beans","1 bag")],
+        "Spaghetti":[item("Rao’s marinara sauce","2 jars"),item("Pasta","1 lb"),item("Brazilian cheese bites","1 bag"),item("Ground beef","1½ lb"),item("Parmesan","1 tub"),item("Green beans","1 bag")],
+        "Lettuce wraps with hamburger":[item("Ground beef","2 lb"),item("Butter lettuce","2 heads"),item("GF tamari","¼ cup"),item("Rice","2 cups dry"),item("Carrots","1 bag"),item("Green onions","1 bunch"),item("Broccoli","1 large bag")],
+        "Frozen pizza":[item("Family frozen pizzas","2"),item("GF cauliflower pizza","1"),item("Green beans","1 bag"),item("Fresh fruit","1 bowl")],
+        "Butter pasta and chicken":[item("Chicken breasts","2 lb"),item("Pasta","1 lb"),item("Butter","1 stick"),item("Parmesan","1 tub"),item("Brazilian cheese bites","1 bag"),item("Peas","1 bag")],
+        "Breakfast-for-dinner":[item("Eggs","18"),item("GF hash rounds","1 bag"),item("Shredded cheese","2 cups"),item("Bell peppers","3"),item("Onion","1"),item("Fresh fruit","1 bowl")],
+        "Mississippi pot roast":[item("Chuck roast","3–4 lb, sale only"),item("Pepperoncini","1 jar"),item("GF ranch seasoning","1 packet"),item("GF au jus mix","1 packet"),item("Butter","1 stick"),item("Potatoes","3 lb"),item("Carrots","1 bag"),item("Green beans","1 bag")],
+        "H-E-B sheet pan meals":[item("Chicken breasts","2 lb"),item("Broccoli","1 large bag"),item("Sweet potatoes","3"),item("Fresh rosemary","1 bunch"),item("Olive oil","as needed"),item("GF seasoning blend","1 jar")],
+        "Sheet-pan chicken fajita bowls":[item("Chicken breasts","2 lb"),item("Bell peppers","4"),item("Onion","2"),item("GF taco seasoning","2 packets"),item("Rice","2 cups dry"),item("Corn tortillas","12"),item("Broccoli","1 large bag")],
+        "Loaded taco baked potatoes":[item("Ground beef","2 lb"),item("Russet potatoes","6 large"),item("GF taco seasoning","2 packets"),item("Shredded cheese","2 cups"),item("Salsa","1 jar"),item("Lettuce","1 head"),item("Tomatoes","3"),item("Green beans","1 bag")],
+        "Beef & black bean nachos":[item("Ground beef","1½ lb"),item("Black beans","2 cans"),item("Tree-nut-safe tortilla chips","1 large bag"),item("GF taco seasoning","1 packet"),item("Shredded cheese","3 cups"),item("Tomatoes","3"),item("Lettuce","1 head"),item("Broccoli","1 large bag")],
+        "Rao’s chicken bake":[item("Chicken breasts","2 lb"),item("Rao’s marinara sauce","1 jar"),item("Mozzarella","2 cups"),item("Rice","2 cups dry"),item("Italian seasoning","1 jar"),item("Green beans","1 bag")],
+        "Cheeseburger potato bowls":[item("Ground beef","2 lb"),item("Russet potatoes","3 lb"),item("Shredded cheese","2 cups"),item("Lettuce","1 head"),item("Pickles","1 jar"),item("GF burger sauce ingredients","1 batch"),item("Broccoli","1 large bag")],
+        "Chicken taco soup":[item("Chicken breasts","2 lb"),item("Black beans","2 cans"),item("Corn","2 cans"),item("Diced tomatoes","2 cans"),item("GF taco seasoning","2 packets"),item("GF chicken broth","6 cups"),item("Tree-nut-safe tortilla chips","1 bag"),item("Shredded cheese","2 cups")],
+        "Rotisserie chicken rice bowls":[item("Rotisserie chicken","1 large"),item("Rice","2 cups dry"),item("Black beans","2 cans"),item("Shredded cheese","2 cups"),item("Salsa","1 jar"),item("Lettuce","1 head"),item("Broccoli","1 large bag")],
+        "Mini meatloaf & smashed potatoes":[item("Ground beef","2 lb"),item("GF cracker crumbs","1 cup"),item("Eggs","2"),item("Ketchup","1 bottle"),item("Potatoes","3 lb"),item("Butter","1 stick"),item("Green beans","1 bag")],
+        "Chicken carnitas":[item("Chicken breasts","2½ lb"),item("GF carnitas seasoning","1 packet"),item("Lime","3"),item("Corn tortillas","18"),item("Salsa","1 jar"),item("Shredded cheese","2 cups"),item("Broccoli","1 large bag")],
+        "Steak bites":[item("Beef steak","2 lb"),item("Butter","1 stick"),item("Garlic","1 bulb"),item("Potatoes","2 lb"),item("Broccoli","1 large bag"),item("GF seasoning blend","1 jar")],
+        "French dip sandwiches":[item("Beef chuck roast","3 lb"),item("GF beef broth","4 cups"),item("GF au jus mix","1 packet"),item("Family sandwich rolls","6"),item("GF bread","1 loaf"),item("Provolone","12 slices"),item("Green beans","1 bag")],
+        "Chicken spinach white-sauce pasta":[item("Chicken breasts","2 lb"),item("GF pasta","1½ lb"),item("Spinach","1 large bag"),item("Heavy cream","1 pint"),item("Parmesan","1 tub"),item("Garlic","1 bulb"),item("Broccoli","1 large bag")],
+        "Wagyu Instant Pot ribs":[item("Beef short ribs","3 lb"),item("GF beef broth","3 cups"),item("GF Worcestershire sauce","¼ cup"),item("Onion","2"),item("Garlic","1 bulb"),item("Potatoes","3 lb"),item("Carrots","1 bag")],
+        "Hamburgers":[item("Ground beef","2 lb"),item("Family hamburger buns","6"),item("GF bread","1 loaf"),item("Lettuce","1 head"),item("Tomatoes","3"),item("Cheese slices","8"),item("Pickles","1 jar"),item("Green beans","1 bag")],
+        "Crockpot chicken tortellini soup":[item("Chicken breasts","2 lb"),item("GF tortellini","2 packages"),item("GF chicken broth","6 cups"),item("Heavy cream","1 pint"),item("Cheddar","2 cups"),item("Broccoli","1 large bag"),item("Carrots","1 bag"),item("Onion","1"),item("Dijon mustard","1 jar")],
+        "Shepherd’s pie":[item("Ground beef","2 lb"),item("Potatoes","3 lb"),item("Peas and carrots","2 bags"),item("GF beef broth","2 cups"),item("Cornstarch","1 box"),item("Butter","1 stick"),item("Shredded cheese","1 cup")],
+        "Philly cheesesteak with provolone":[item("Beef steak strips","2 lb"),item("Bell peppers","3"),item("Onion","2"),item("Provolone","12 slices"),item("Family sandwich rolls","6"),item("Broccoli","1 large bag")],
+        "Tater tot casserole":[item("Ground beef","2 lb"),item("GF tater tots","1 large bag"),item("GF cream of mushroom soup","2 cans"),item("Mixed vegetables","2 bags"),item("Shredded cheese","2 cups"),item("Onion","1")],
+        "Chicken tortilla soup":[item("Rotisserie chicken","1 large"),item("Black beans","2 cans"),item("Corn","2 cans"),item("Diced tomatoes","2 cans"),item("GF chicken broth","6 cups"),item("GF corn tortilla strips","1 bag"),item("Shredded cheese","2 cups"),item("Broccoli","1 large bag")],
+        "Breakfast casserole":[item("Eggs","18"),item("GF hash browns","1 large bag"),item("Chicken or turkey sausage","1 lb, no pork"),item("Shredded cheese","2 cups"),item("Bell peppers","3"),item("Onion","1"),item("Broccoli","1 large bag")],
+        "Chicken fried rice":[item("Chicken breasts","2 lb"),item("Rice","3 cups dry"),item("Peas and carrots","2 bags"),item("Eggs","6"),item("GF tamari","½ cup"),item("Green onions","1 bunch"),item("Broccoli","1 large bag")],
+        "Cowboy butter chicken with linguine":[item("Chicken breasts","2 lb"),item("Linguine","1 lb"),item("Brazilian cheese bites","1 bag"),item("Butter","1½ sticks"),item("Garlic","1 bulb"),item("Lemon","2"),item("Fresh parsley","1 bunch"),item("Green beans","1 bag")],
+        "Doritos taco-hamburger casserole":[item("Ground beef","2 lb"),item("GF taco seasoning","2 packets"),item("Label-checked Doritos","1 large bag"),item("Shredded cheese","3 cups"),item("Diced tomatoes","1 can"),item("Black beans","1 can"),item("Broccoli","1 large bag")],
+        "Baked panko chicken strips":[item("Chicken tenderloins","2½ lb"),item("GF panko","2 cups"),item("Eggs","3"),item("GF flour","1 cup"),item("GF seasoning blend","1 jar"),item("Potatoes","2 lb"),item("Green beans","1 bag")],
+        "Rotisserie chicken with mashed potatoes & gravy":[item("Rotisserie chicken","1 large"),item("Potatoes","3 lb"),item("Butter","1 stick"),item("Milk","1 quart"),item("GF chicken broth","3 cups"),item("Cornstarch","1 box"),item("Green beans","1 bag")],
+        "Homemade pizza night":[item("Family pizza crusts","3"),item("GF pizza crust","1"),item("Rao’s pizza sauce","2 jars"),item("Mozzarella","3 cups"),item("Provolone","8 slices"),item("Turkey pepperoni","1 package, no pork"),item("Broccoli","1 large bag")]
+      };
+
+      var selected=[];
+      var have={};
+      var trayPicks=document.getElementById("trayPicks");
+      var trayEmpty=document.getElementById("trayEmpty");
+      var trayCount=document.getElementById("trayCount");
+      var getButton=document.getElementById("getShoppingList");
+      var pantrySection=document.getElementById("pantry-check");
+      var pantryGroups=document.getElementById("pantryGroups");
+      var shoppingList=document.getElementById("shoppingList");
+      var copyStatus=document.getElementById("copyStatus");
+      var pickButtons=[];
+
+      function mealKey(mealName,ingredientName){return mealName+"|"+ingredientName;}
+      function updateButtons(){
+        pickButtons.forEach(function(button){
+          var name=button.getAttribute("data-meal");
+          var isPicked=selected.indexOf(name)>-1;
+          button.setAttribute("aria-pressed",isPicked?"true":"false");
+          button.textContent=isPicked?"Picked — tap to remove":"Pick this dinner";
+          button.disabled=!isPicked && selected.length>=5;
+        });
+      }
+      function renderTray(){
+        trayPicks.innerHTML="";
+        selected.forEach(function(name){
+          var chip=document.createElement("button");
+          chip.type="button";
+          chip.className="tray-chip";
+          chip.textContent=name;
+          chip.setAttribute("aria-label","Remove "+name+" from this week");
+          chip.addEventListener("click",function(){toggleMeal(name);});
+          trayPicks.appendChild(chip);
+        });
+        trayEmpty.hidden=selected.length>0;
+        trayCount.textContent=selected.length+" of 5 picked";
+        getButton.disabled=selected.length===0;
+        updateButtons();
+      }
+      function toggleMeal(name){
+        var index=selected.indexOf(name);
+        if(index>-1){
+          selected.splice(index,1);
+          Object.keys(have).forEach(function(key){if(key.indexOf(name+"|")===0){delete have[key];}});
+        }else if(selected.length<5){selected.push(name);}
+        renderTray();
+        if(!pantrySection.hidden){
+          if(selected.length){renderPantry();}else{pantrySection.hidden=true;}
+        }
+      }
+      document.querySelectorAll(".meal-card, .idea").forEach(function(card){
+        var heading=card.querySelector("h3");
+        if(!heading || !meals[heading.textContent.trim()]){return;}
+        var button=document.createElement("button");
+        button.type="button";
+        button.className="pick-button";
+        button.setAttribute("data-meal",heading.textContent.trim());
+        button.setAttribute("aria-pressed","false");
+        button.textContent="Pick this dinner";
+        button.addEventListener("click",function(){toggleMeal(button.getAttribute("data-meal"));});
+        card.appendChild(button);
+        pickButtons.push(button);
+      });
+
+      function renderPantry(){
+        pantryGroups.innerHTML="";
+        selected.forEach(function(mealName){
+          var group=document.createElement("div");
+          group.className="pantry-meal";
+          var title=document.createElement("h3");
+          title.textContent=mealName;
+          group.appendChild(title);
+          var checks=document.createElement("div");
+          checks.className="pantry-checks";
+          meals[mealName].forEach(function(ingredient,index){
+            var label=document.createElement("label");
+            label.className="pantry-check";
+            var checkbox=document.createElement("input");
+            checkbox.type="checkbox";
+            checkbox.checked=!!have[mealKey(mealName,ingredient.name)];
+            checkbox.setAttribute("aria-label","Already have "+ingredient.name+" for "+mealName);
+            checkbox.addEventListener("change",function(){
+              have[mealKey(mealName,ingredient.name)]=checkbox.checked;
+              renderShoppingList();
+            });
+            var text=document.createElement("span");
+            text.textContent=ingredient.name+" — "+ingredient.quantity;
+            label.appendChild(checkbox);
+            label.appendChild(text);
+            checks.appendChild(label);
+          });
+          group.appendChild(checks);
+          pantryGroups.appendChild(group);
+        });
+        renderShoppingList();
+      }
+      function neededItems(){
+        var merged={};
+        var order=[];
+        selected.forEach(function(mealName){
+          meals[mealName].forEach(function(ingredient){
+            if(have[mealKey(mealName,ingredient.name)]){return;}
+            var key=ingredient.name.toLowerCase();
+            if(!merged[key]){
+              merged[key]={name:ingredient.name,quantities:[],meals:[]};
+              order.push(key);
+            }
+            merged[key].quantities.push(ingredient.quantity);
+            merged[key].meals.push(mealName);
+          });
+        });
+        return order.map(function(key){return merged[key];});
+      }
+      function itemLine(entry){
+        if(entry.meals.length>1){return entry.name+" — "+entry.meals.length+" dinners: "+entry.quantities.join(" + ");}
+        return entry.name+" — "+entry.quantities[0];
+      }
+      function renderShoppingList(){
+        shoppingList.innerHTML="";
+        var needed=neededItems();
+        if(!needed.length){
+          var empty=document.createElement("li");
+          empty.className="shopping-empty";
+          empty.textContent="You already have everything for these dinners.";
+          shoppingList.appendChild(empty);
+          return;
+        }
+        needed.forEach(function(entry){
+          var li=document.createElement("li");
+          li.textContent=itemLine(entry);
+          shoppingList.appendChild(li);
+        });
+      }
+      getButton.addEventListener("click",function(){
+        renderPantry();
+        pantrySection.hidden=false;
+        pantrySection.scrollIntoView({behavior:"smooth",block:"start"});
+      });
+      function startOver(){
+        selected=[];
+        have={};
+        pantrySection.hidden=true;
+        copyStatus.textContent="";
+        renderTray();
+        document.getElementById("rotation").scrollIntoView({behavior:"smooth",block:"start"});
+      }
+      document.getElementById("startOver").addEventListener("click",startOver);
+      document.getElementById("startOverBottom").addEventListener("click",startOver);
+
+      function showCopied(ok){
+        copyStatus.textContent=ok?"Copied — ready to paste into your shopping app.":"Couldn’t copy automatically. Select the list above to copy it.";
+      }
+      document.getElementById("copyList").addEventListener("click",function(){
+        var text=neededItems().map(function(entry){return "• "+itemLine(entry);}).join("\n");
+        if(!text){text="Everything is already in the pantry.";}
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(function(){showCopied(true);}).catch(function(){fallbackCopy(text);});
+        }else{fallbackCopy(text);}
+      });
+      function fallbackCopy(text){
+        var area=document.createElement("textarea");
+        area.value=text;
+        area.setAttribute("readonly","");
+        area.style.position="fixed";
+        area.style.opacity="0";
+        document.body.appendChild(area);
+        area.select();
+        var copied=false;
+        try{copied=document.execCommand("copy");}catch(error){copied=false;}
+        document.body.removeChild(area);
+        showCopied(copied);
+      }
+      renderTray();
     })();
   </script>
 </body>
